@@ -1,0 +1,40 @@
+. -> mean everything
+^ -> mean start line with
+$ -> mean end line with
+.{4,10} -> mean 4 to 10 from everything
+.* -> mean everthing however many
+
+* -> mean repeathing the previous character for 0 or more times
++ -> means repeating the previous character for 1 or more times 
+? -> means zero or one repeats
+
+\d -> means digit
+
+a|b -> mean a or b
+
+ranges:
+[:alnum:] -> alpanumeric characters
+[:blank:] -> space and tab characters
+[:digit:] -> the digits 0 through 9
+[:upper:] and [:lower:] -> upper and lower case letters
+in every brakets ^ means as the first character after [ in a character class negates the sense of the remanining characters
+
+we can use all of the top for grep:
+useful switch:
+-c -> just show the count
+-v -> reverse the search
+-n -> show line numbers
+-l -> show only file names
+-i -> case insensitive
+-r -> read all files under each directory, recursively
+
+egrep -> is extended grep that can use more regexes
+fgrep -> is fixed grep and don't think to much and don't use regex
+
+
+also we can use all the regex for sed:
+-r -> use advanced regex
+-n -> i don't undrestand the meaninig (suppress output, you can use p at the end of your regex to print the output)
+
+
+regex101.com -> is a site to practic regex.

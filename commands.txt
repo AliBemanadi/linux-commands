@@ -1,0 +1,253 @@
+lsusb -> show all the usb devices that connect to pc
+lspci -> show the hardware devices that connect to pc
+lsblk -> show the block devices like disk and ...
+lshw -> show all thing about the system
+
+#loadable kernel modules
+lsmod -> show the modules that connect to kernel
+rmmod -> delete the modules
+modprobe -> find the module and connect it to kernel
+dmesg -> showing the log of the kernel while booting.
+
+systemctl list-units
+systemctl list-units --type=target
+systemctl get-default # default target (groups of services are started via target unit files)
+
+systemctl list-unit-files
+systemctl cat ntpd.service
+systemctl cat graphical.target
+
+systemctl stop sshd
+systemctl start sshd
+systemctl status sshd
+systemctl is-active sshd
+systemctl is-failed sshd
+systemctl restart sshd
+systemctl reload sshd # re-reads the configuration of the service configs
+systemctl daemon-reload sshd # re-reads the configuration of the systemd configs of this service
+systemctl enable sshd
+systemctl disable sshd
+
+to check the logs, we have to use the journalctl utility:
+journalctl # show all journal
+journalctl --no-pager # do not use less
+journalctl -n 10 # only 10 lines
+journalctl -S -1d # last 1 day
+journalctl -xe # last few logs
+journalctl -u ntp # only ntp unit
+journalctl _PID=1234
+
+shutdowm -> to poweroff the system (see the manul page)
+wall -> sending wall message to all logged in users
+with changing /etc/motd file when someone connect to our system show the message that we write in the motd file
+mesg -> show the message status (and can change with y or n)
+
+type command-name -> tell the type of the command (shell built in, alias, ...)
+uname -a -> give you all data about the system
+which command-name , whereis command-name , whatis command-name
+special characters -> * ?[]'"\$;&()|^<>
+
+Shell environment variables:
+USER ->	The name of the logged-in user
+PATH ->	List of directories to search for commands, colon separated
+EDITOR ->	Default editor
+HISTFILE ->	Where bash should save its history (normally .bash_history)
+HOSTNAME ->	System hostname
+PS1 ->	The Prompt! Play with it
+UID ->	The numeric user id of the logged-in user
+HOME ->	The user's home directory
+PWD ->	The current working directory
+SHELL ->	The name of the shell
+$ ->	The process id (or PID of the running bash shell (or other) process
+PPID ->	The process id of the process that started this process (that is, the id of the parent process)
+? ->	The exit code of the last command
+
+command history:
+Up and Down Arrow ->	Move in the history
+Ctrl+R ->	Backward Search
+Ctrl+O ->	Run the command you found with Ctrl+R
+!! ->	Run the last command
+!10 ->	Run command number 10
+!text ->	search backward for text, and run the first found command
+
+cat, bzcat, xzcat, zcat, gzcat
+
+less:
+q ->	Exit
+/foo ->	Searches for foo
+n	Next -> (search)
+N ->	Previous (search)
+?foo ->	Search backward for foo
+G ->	Go to end
+nG ->	Go to line n
+PageUp, PageDown, UpArrow, DownArrow ->	You guess!
+
+od -> This command _dump_s files (Shows files in formats other than text). Normal behavior is OctalDump (showing in base 8)
+split -> Will split the files. It is very useful for transferring HUGE files on smaller media (say splitting a 3TB file into 8GB parts and moving them to another machine with a USB Disk)
+tali , head (tail -f is so usefull)
+cut -> cut one or more columns from a file
+nl -> is like cat -n
+sort , uniq (for using uniq it should be sort)
+paste -> The paste command pastes lines from two or more files side-by-side
+tr -> translates characters in the stream. For example, tr 'ABC' '123' will replace A with 1, B with 2, and C with 3 in the provided stream
+wc
+
+sed 's/oldstr/newstr/g' filenam
+
+hashing:
+
+The hashing algorithms covered in LPIC1 are:
+md5sum
+sha256sum
+sha512sum
+
+file globbing:
+* -> means any string
+? ->  means any single character
+[ABC] -> matches A, B, or C
+[a-k] -> matches a, b, c, ..., k (both lower-case and upper-case)
+[0-9a-z] -> matches all digits and numbers
+[!x] -> means NOT X.
+
+file -> To determine the type of a file
+dd -> copies data from its input to its output (say files or devices)
+  example -> dd if=/dev/sda of=backup.dd bs=4096
+
+find:
+  usefull opt -> -iname -name -size -type -empty -type(link, dir, file, ...) -user -group -maxdepth -nouser -nogroup
+  for find by time:
+  -amin ->	Access Minutes
+  -cmin ->	Status Change Min
+  -mmin ->	Modified Minutes
+  -atime ->	access time in days	
+  -ctime ->	Status Changed in Days	
+  -mtime ->	Modified days	
+  -newer ->	Newer than reference
+
+  -exec -> example: find . -name "*.htm" -exec mv '{}' '{}l' \;
+
+
+Compression:
+gzip & gunzip
+bzip2 & bunzip2
+xz & unxz
+
+Archiving:
+tar:
+  opt:
+  -cf -> myarchive.tar	create file named myarchive.tar
+  -xf -> myarchive.tar	extract a file named myarchive.tar
+  -z ->	compress the archive with gzip after creating it
+  -j ->	compress the archive with bzip2 after creating it
+  -v ->	verbose! print a lot of data about what is happening
+  -r ->	append new files to the currently available archive
+
+redirect standard:
+0 -> stdin
+1 -> stdout
+2 -> stderr
+
+> :	Redirect STDOUT to a file; Overwrite if exists
+>> :	Redirect STDOUT to a file; Append if exists
+2> :	Redirect STDERR to a file; Overwrite if exists
+2>> :	Redirect STDERR to a file; Append if exists
+&> :	Redirect both STDOUT and STDERR; Overwrite if exists
+&>> :	Redirect both STDOUT and STDERR; Append if exists
+<	: Redirect STDIN from a file
+<> :	Redirect STDIN from the file and send the STDOUT to it
+
+here-documents:
+example:
+tr ' ' '.' << END_OF_DATA
+> this is a line
+> and then this
+> END_OF_DATA
+
+this.is.a.line
+and.then.this
+
+
+ls | xargs -I DATA echo this file is DATA -> this will echo all thing that get with ls and replace it with DATA
+
+tee:
+The problem with redirection is that you cannot see the progress of your commands in the same terminal. The tee utility solves this. If you need to see the output on screen and also save it to a file, tee is your friend. The -a switch will append to files if they exist
+
+
+
+managing processes:
+foreground and background jobs
+
+by using '&' after the command it will run in background.
+
+when a program is running normally in the foreground, you can do two things: 
+- break it using Ctrl+c 
+- suspend or pause it using Ctrl+z
+
+A stopped job can be brought to the foreground using 'fg %proc-name' command (or the background using 'bg %proc-name'). You can also list all the jobs by the 'jobs' command.
+jobs -l also shows the process ID of jobs
+
+nohup some-command -> The nohup command lets you run your commands even after you close the terminal or logout. By default it writes its output to nohup.out
+
+kill -SIGNAL_ID_OR_NAME process_id:
+signal-id:
+1 ->	HUP	Informing the process that its controlling terminal (like an ssh connection) is terminated
+15 ->	TERM	normal termination request
+9 ->	KILL	forcefully kills the proccess
+
+killall proc-name:
+This command Will send the given signal (or by default 15) to all processes with the given name
+
+pkill:
+Will send the given signal (or 15) to all the processes with a specific pattern in their name
+
+
+
+monitoring processes:
+
+ps -> show all proc in a shell
+- usefull switch: -ef(show full all proc in the system)
+
+pgrep pattern -> show the pid of the given pattern
+
+top:
+usefull key:
+h	-> help
+q	-> quit
+M	-> sort based on memory usage
+c	-> show full commands
+k	-> kill after asking pid and signal
+
+free, uptime
+
+watch:
+Sometimes you have a command which shows you an output but you want to keep running it and observing the output. In these cases, the watch is your friend. It lets you run and check the output of a command in specific time intervals (default is 2 seconds).
+some switch:
+-n To specify the interval in seconds
+-b Beep if the command has a non-zero exit
+-d Shows the difference between runs
+
+nice -n number(between -20 and 19) command -> run that command with niceness number
+renice -n number pid -> renice the process to that number
+
+
+df -> disk free command
+switch: -h (human readable), -T(type), -i(showing inodes)
+
+du -> disk usage command
+switch: -h, -c(show the grand total), --max-depth 1(calculate all but show only 2 directories deep), -s(only shows the summary)
+
+mount /dev/.... /media/mount-place -> mount a file system
+umount /dev/.... -> un mount a file system
+
+
+Manage file permissions and ownership:
+groups, chmod(switch: R{recursive}), chown, chgrp, newgrp, umask
+sudo usermod -aG sudo ali-bemanadi -> will add ali-bemanadi to the sudo group
+
+
+Create and change hard and symbolic links:
+ln myfile linkfile -> will hard link linkfile to myfile
+ln -s myfile linkfile -> will symbolic link linkfile to myfile
+
+unlink linkfile -> will un link the linkfile
+

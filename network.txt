@@ -1,0 +1,41 @@
+ifconfig
+ifconfig name some.some.some.some netmask some.some.some.some
+ifconfig name down
+
+ip
+ip link show
+ip addr show
+ip addr add (see man page)
+ip addr del (see man page)
+ip link set (see man page)
+ip route show
+ip route add (see man page)
+
+nmcli (show add man page with --help for every commands)
+
+to connect to a wifi network by terminal:
+nmcli device wifi connect wifiname password wifipass
+
+hostname
+
+hostnamectl status
+
+sudo hostnamectl  set-hostname TheHostName
+
+/etc/hosts (see this for domain and some like that)
+
+ping
+traceroute
+
+netstat -na
+netstat -tuna
+
+ss -tulpn
+
+nc (net cat) -> for check the ports. for more information go to video or see man page
+
+host domain-name
+dig domain-name
+
+
+

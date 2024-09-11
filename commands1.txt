@@ -1,0 +1,28 @@
+environment variables:
+
+variable="some thing" -> define a variable in shell
+variable can not seen by command env
+but can seen with command set (set has some switch)
+we can using 'unset' to unset a variable
+we can use 'export' to see our variable in other shells
+we can use 'source' to source any script
+
+
+aliases:
+
+alias ali="echo love you" -> when i use ali it runs the command and show 'love you'
+
+
+functions:
+
+func-name () {
+  ls -l 
+  echo lolo
+}
+
+when we run func-name it do the commands in it
+
+
+we have a .bashrc file in our home directory and we can use it to set out variable perminit
+
+

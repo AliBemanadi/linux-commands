@@ -1,0 +1,102 @@
+we can combine our commands with ;
+we can AND our commands :
+  cd /something && ls -> this means if the first command success (can go to /something) then do ls. else doesn't do anythin
+
+we can OR our commands :
+  cd /some1 || cd /some2 -> this means if it can go in /some1 then the second command doesn't run else go to /some2
+
+this line "#!/bin/bash" should be in the first line in our script
+
+if we give some variable to the bash when calling it we can achive that variable by using $1, $2, ...
+
+$# give us the number of the variable that we give to the script when calling it
+
+$? always contain the last command status.
+
+command substitution:
+using $(command) or `command`
+
+conditions: 
+
+syntax:
+if [ condition ]
+then
+  do something
+  do another thing
+else
+  do some
+fi
+
+also we can use "test condition" for "[ condition ]"
+
+"a" = "b" ->	if two strings are equal (here it will return False)
+"a" != "b" ->	string a is not equal to string b
+4 -lt 40 ->	if 4 is lower than 40 (True)
+5 -gt 15 ->	if 5 is greater than 15 (False)
+5 -ge 5 ->	if 5 is greater or equal 5
+5 -le 3 ->	if 5 is lower or equal to 3
+9 -ne 2 ->	9 is not equal with 2 (True)
+-f FILENAME ->	if file FILENAME exists
+-s FILENAME ->	if file exists and its size is more than 0 (Zero)
+-x FILENAME ->	if file exists and is executable
+
+
+
+read variable:  
+by using read we get some input from user and put it in variable.
+
+an example with switches:
+read -t 10 -p "Server address?" SERVER -> print "Server address?" and wait 10 second for input 
+
+
+loops:
+for:
+
+syntax:
+for VAR in SOME_LIST;
+do
+  some stuff with $VAR
+  some other stuff
+done
+
+some example:
+
+or NUM in 1 2 3 4 5 6;
+do
+    echo $NUM
+done
+
+for FILE in $(ls);
+do
+    echo $FILE
+    wc -l $FILE
+done
+
+we can use seq command or {1..10}
+
+
+while:
+
+syntax:
+while [condition]
+do
+    do something
+    do anohter thing
+done
+
+example:
+VAR=52
+
+while [ $VAR -gt 42 ]
+do
+    echo VAR is $VAR and it is still greater than 42
+    let VAR=VAR-1
+done
+
+!note: using let for Mathematics
+
+
+
+
+
+

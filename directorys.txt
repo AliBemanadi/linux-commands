@@ -1,0 +1,20 @@
+/boot -> contain the efi and Uses a specific disk partition for boot (EFI System Partition (ESP)) and uses FAT ant its contain grub
+/sys -> All block devices are at the block and bus directory has all the connected PCI, USB, serial, ... devices. Note that here in sys we have the devices based on their technology but /dev/ is abstracted.
+/dev -> is a device manager for the Linux kernel
+/proc -> contain the proccesses 
+
+/bin ->	Essential command binaries
+/boot ->	Static files of the boot loader
+/dev ->	Device files
+/etc ->	Host-specific system configuration
+/home ->	Home directory of the users
+/lib ->	Essential shared libraries and kernel modules
+/media ->	Mount point for removable media
+/mnt ->	Mount point for mounting a filesystem temporarily
+/opt ->	Add-on application software packages
+/root ->	Home directory of the root user
+/sbin ->	Essential system binaries
+/srv ->	Data for services provided by this system
+/tmp ->	Temporary files, sometimes purged on each boot
+/usr ->	Secondary hierarchy
+/var ->	Variable data (logs, ...)
