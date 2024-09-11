@@ -1,0 +1,365 @@
+mkdir:
+-p -> to make the parent directory if it not exist
+
+rm:
+-r -> for delete directory recursive
+
+cd:
+- -> go in the last dir
+
+cp:
+-r -> for copy every thing into another where
+
+sudo:
+-, -l -> for example sudo su - go to rood directory when switch to root user
+
+getent passwd username -> for change password ??
+
+history:
+-d number -> can remove that command in history
+
+apt-cache policy packageName -> show the package policy
+
+wc:
+-l
+-w
+-c
+
+find:
+regex most be in ""
+-size
+-mtime
+-iname
+-perm ??
+
+id: ??
+
+adduser: ??
+useradd:
+-m -> create home
+-s ??
+
+usermod -aG group user
+
+man number command
+-k ??
+
+groupadd groupName: ??
+
+chown:
+-R -> recursive
+
+type -a command ?? show all thing like alias
+
+۳ نوع سوکت داریم: tcp-ipو rowو uniq sokcet 
+
+crontab:
+-l -> list the crons. every cron is for a user
+-e -> edit cron
+search in google -> cron tab generator
+*/10 * * * * -> every ten minutes
+
+ps:
+aux
+-e
+-o -> give the options like pid, ppid, cmd
+pid[number]
+
+kill -l ??
+
+swapoff -a , swapon -a
+
+/lib/systemd/system ??
+
+dpkg:
+-S ??
+-L ??
+
+pkexec ??
+
+awk:
+syntax: awk '{ print $ }'
+$0 -> all
+$NF -> last column
+NR line number
+awk '{NR==2,NR==4 print(NR,$1)}'
+
+
+
+sed '1,2 s/li/lu/g' sed.txt -> do this for line one and line two
+sed: 
+-i -> write the changes to that file
+-i.bak -> make changes and write it to the file and make a .bak file with the same name and put the original file in it.
+
+cut -d ' ' -f 1-3 file.txt
+-d -> delimiter
+-f -> column
+-c -> character
+
+ln -> see much different about hard and soft link
+
+uname:
+-a -> full about system
+
+load average in top command ??
+
+df -> وضعیت کلی فایل سیستم
+-h
+
+du:
+-h
+-d2 -> depth 2
+-s -> total 
+
+free:
+-h
+
+uptime
+
+whoami
+
+who
+
+w
+
+last: users that login
+
+fdisk:
+-l -> list the 
+
+which
+
+whereis
+
+gzip: ??
+hint: اول فایلو زیپ میکنه بعد فضا رو آزاد میکنه
+-k: keep the file and make a gzip
+
+zip: ??
+-r ??
+-q -> quiet
+
+unzip:
+-d -> destination
+
+tar: ??
+-cvzf
+-xvzf
+Size suffixes
+tar -czvf download.tar Download/
+-tf download.tar -> see the content of the file without extracting it
+
+.bashrc -> just for users
+/etc/bash.bashrc -> for all	
+
+samba nft ?? 
+san nas das ??
+RAID ??
+
+gparted 
+fdisk -l
+fdisk /dev/diskName
+
+what is hybernet (giving swap to linux with size ram) ??
+
+filesystem ??
+storage ??
+partitioning ??
+
+
+
+
+
+
+??
+ping
+trtraceroute
+dig
+arp
+telnet
+mtr
+nslookup
+netstat
+ss
+curl
+wget
+whois
+iftop
+nmcli	nmcli dev wifi list 	nmcli dev wifi connect SSID password NETPASSWORD
+iw
+ssh user@IP
+ssh-keygen
+ssh-copy-id
+scp
+csp -r file user@IP:address
+dhclient
+ifconfig
+ip vs ifconfig cheetsheet
+
+apt show packagename
+
+journalctl:
+-r reverse
+-f follow (like tail -f)
+-S since
+-U until
+-u unit -> must run with sudo (unit like graphical.target)
+-k -> kernel logs 
+--list-boots
+-b boot وقتی که شماره بوت را بزنیم لاگ های مربوط به آن لاگ را به ما میدهد
+-p[number] priority از ۱ تا ۷
+-n lines
+-o output (json, json-pretty, short, ...)
+--grep
+--case-sensitive=false
+--facility=help
+-F _UID با دش اف میگه که تو یوآیدی چیا میتونه بزاره
+--disk-usage
+--vacuum- ??
+
+logging:
+ps
+free
+vmstat
+top, htop, bpytop
+w
+uptime
+
+
+
+
+bash scripting:
+[] -> old test with fewer futures
+[[]] -> new test that have more futures like that we can use == != > < ... 
+
+"$var" == "string"  -> because we put variable in "" if the var does not exist not raise an error and compare "" to "string"
+
+array:
+declare -> arr=("a" "b" "c" "d")
+if use $arr give us the first element
+use ${arr[@]} to give us all elements
+use ${arr[2]} to give the third element
+use ${#arr[@]} to give the size of the array
+use ${!arr[@]} to give the indexes
+we cat make an string to an array. like:
+var1="a b c d"
+var2=($var1)
+two demintional array:
+
+#!/usr/bin/bash
+
+declare -A matrix
+
+for ((i=0; i<5;i++)); do
+  for ((j=0;j<4;j++)); do
+    matrix[$i, $j]=$((i*j))
+  done
+done
+
+
+for ((i=0; i<5;i++)); do
+  for ((j=0;j<4;j++)); do
+    echo -n "${matrix[$i, $j]} "
+  done
+  echo ""
+done
+
+
+
+
+loop:
+for VAR in 2 4 6 7
+do 
+command
+done
+
+for ((i = 0; i < 10; i++)); do
+command
+done
+
+IFS (internal field separator) -> this is an env variable that is space default and we can change it to another separator
+oldIFS=$IFS
+IFS=,
+do some command
+IFS=$oldIFS
+getting two separator:
+IFS=",:;"
+
+
+function:
+return codeNum
+
+put the standard output in a var
+func() {
+echo "hello"
+echo "ali"
+}
+
+var=$(func)
+
+set -e -> if we use it in our script when we have an error the rest of the code is not execute
+
+
+---------------------------------------------------------------
+
+ping
+traceroute
+mtr
+dig
+arp
+telnet
+nslookup
+netstat
+host
+ss
+curl
+wget
+whois
+iftop
+tcpdump
+nmap
+nmcli
+iw
+ssh
+scp
+dhclient
+ifconfig
+
+------------------
+Basic Firewall Configuration
+sudo nft add table inet filter
+sudo nft add chain inet filter input { type filter hook input priority 0 \; policy drop \; }
+sudo nft add rule inet filter input iif "lo" accept
+sudo nft add rule inet filter input tcp dport 22 accept
+
+Network Address Translation (NAT)
+sudo nft add table ip nat
+sudo nft add chain ip nat postrouting { type nat hook postrouting priority 100 \; }
+sudo nft add rule ip nat postrouting ip saddr 192.168.1.0/24 oif "eth0" masquerade
+
+Port Forwarding
+sudo nft add table ip nat
+sudo nft add chain ip nat prerouting { type nat hook prerouting priority 0 \; }
+sudo nft add rule ip nat prerouting tcp dport 8080 dnat to 192.168.1.100:80
+
+Blocking Specific IP Addresses
+sudo nft add table inet filter
+sudo nft add chain inet filter input { type filter hook input priority 0 \; policy accept \; }
+sudo nft add rule inet filter input ip saddr 203.0.113.50 drop
+
+
+ sudo nft add table inet inet-table
+ sudo nft add chain inet inet-table output-filter-chain '{ type filter hook output priority 0; }'
+ sudo nft add rule inet inet-table output-filter-chain ip daddr 8.8.8.8 counter
+ sudo nft list table inet inet-table
+  ping -c 1 8.8.8.8
+
+
+---------
+
+ip link show
+ip addr show
+ip link set eth0 up
+ip addr add 192.168.1.100/24 dev eth0
+ip route show
+ip route add 10.0.0.0/24 via 192.168.1.254 dev eth0
